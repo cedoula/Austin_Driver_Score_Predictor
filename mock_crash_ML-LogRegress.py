@@ -5,14 +5,21 @@ from sklearn.linear_model import LogisticRegression
 from sklearn.metrics import accuracy_score
 import pandas as pd
 import os
+import sqlite3
 
-#os.chdir("/Users/Cedoula/Desktop/AnalysisProjects/Module_20/Final_Project")
+# Open database
+conn = sqlite3.connect('practice.db')
+print ("Opened database successfully")
 
-# read Austin crash mock csv data into DataFrame
-mock_df = pd.read_csv(os.path.join("Resources", "mock_data.csv"))
-#mock_df = pd.read_csv("Resources/mock_data.csv")
+# Define a variable by querying database
+data = conn.execute("SELECT * FROM ML_MOCK_DATA").fetchall()
+# Name the columns
+cols = ['Index','Crash Death Count','Crash Severity','Crash Time','Crash Total Injury Count','Crash Year','Day of Week','Highway Number','Highway System','Latitude','Light Condition','Longitude','Surface Condition','Surface Type','Weather Condition','Vehicle Body Style','Vehicle Damage Rating 1 - Severity','Vehicle Damage Rating 2 - Severity','Vehicle Make','Vehicle Model Name','Vehicle Model Year','Citation','Person Age','Person Alcohol Result','Person Drug Test Result','Person Gender','Person Injury Severity','Person Type']
+# Convert the queried data into a dataframe
+mock_df = pd.DataFrame(data, columns=cols)
+# Drop the extra index column
+mock_df.drop(columns=['Index'], inplace=True)
 print(mock_df.head())
-
 
 # Preprocess the data
 
@@ -39,15 +46,17 @@ print(mock_df.shape)
 
 print(mock_df['Vehicle Body Style'].value_counts())
 
-# Clean Vehicle ody Style column
+# Clean Vehicle Body Style column
 mock_df = mock_df[(mock_df['Vehicle Body Style'] != "99 - UNKNOWN") & (mock_df['Vehicle Body Style'] != "No Data") & (mock_df['Vehicle Body Style'] != "98 - OTHER  (EXPLAIN IN NARRATIVE)") & (mock_df['Vehicle Body Style'] != "EV - NEV-NEIGHBORHOOD ELECTRIC VEHICLE") & (mock_df['Vehicle Body Style'] != "FE - FARM EQUIPMENT")]
 print(mock_df.shape)
 
 print(mock_df.head())
 
+# Drop Vehicle Make column
 mock_df = mock_df.drop(columns=['Vehicle Make'], index=1)
 print(mock_df.head())
 
+# Clean values for Person Gender and Person Type columns
 mock_df.loc[mock_df['Person Gender'] == "2 - FEMALE", 'Person Gender'] = "FEMALE"
 
 mock_df.loc[mock_df['Person Gender'] == "1 - MALE", 'Person Gender'] = "MALE"
@@ -59,7 +68,7 @@ mock_df.loc[mock_df['Person Type'] == "3 - PEDALCYCLIST", 'Person Type'] = "PEDA
 
 print(mock_df.head())
 
-
+# Group Crash Severity in two classes: 0 for none or light injury and 1 for serious injury or fatality
 mock_df.loc[(mock_df['Crash Severity'] == "N - NOT INJURED") | (mock_df['Crash Severity'] == "B - NON-INCAPACITATING INJURY") | (mock_df['Crash Severity'] == "C - POSSIBLE INJURY"), 'Crash Severity'] = 0
 
 
