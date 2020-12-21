@@ -1,8 +1,6 @@
-# Final_Project
-
-## Selected Topic: Analyzing motor vehicle accident data in Austin.
+## Selected Topic
+### Analyzing motor vehicle accident data in Austin.
 - Using SQLite, Python and HTML, we will look at how different factors may contribute to a car crashing.
-
 
 ## Reason for Selecting Topic
 - We want to build a model that will predict the severity of crash depending on different factors. 
