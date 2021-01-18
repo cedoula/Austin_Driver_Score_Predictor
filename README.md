@@ -31,5 +31,6 @@ TxDot Crash Query System -- This database uses a multitude of factors to input d
 ## Deliverable 2 - Dashboard
 - We will be using tableau as a part of our dashboard. Our preliminary dashboard can be found here [Tableau Dashboard](https://public.tableau.com/profile/cedric.vanza#!/vizhome/Austin2018-2020CrashAnalysis/Dashboard1?publish=yes)
 - The other part of our dashboard will be a webpage with an introduction and description of the project. It will include an interactive element, users will be able to select data that pertains to them (age, type of car, etc.) and click a button that will give the a risk score.
+- The blueprints of our dashboard can be found [here[(https://docs.google.com/document/d/1_BNqri7IxI95_6hnyu4C56DFVbYSCSsw11DYcGi8-_k/edit)
 
 
