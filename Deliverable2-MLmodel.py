@@ -42,3 +42,83 @@ df.head()
 # iterating the columns 
 for col in df.columns: 
     print(col)
+
+"""# Preprocessing Data"""
+
+# I selected these features because I think they will have a high correlation with crash severity
+mock_df = df[['Crash Severity', 'Person Age', 'Person Gender', 'Person Type', 'Light Condition', 'Weather Condition', 'Vehicle Body Style', 'Vehicle Make', 'Day of Week','Rating']]
+mock_df.head()
+
+print(mock_df.shape)
+
+# Drop rows with Unknown
+mock_df = mock_df[mock_df['Crash Severity'] != "99 - UNKNOWN"]
+mock_df = mock_df[mock_df['Person Age'] != "99 - UNKNOWN"]
+mock_df = mock_df[mock_df['Person Gender'] != "99 - UNKNOWN"]
+mock_df = mock_df[mock_df['Person Type'] != "99 - UNKNOWN"]
+mock_df = mock_df[mock_df['Light Condition'] != "99 - UNKNOWN"]
+mock_df = mock_df[mock_df['Weather Condition'] != "99 - UNKNOWN"]
+mock_df = mock_df[mock_df['Vehicle Body Style'] != "99 - UNKNOWN"]
+mock_df = mock_df[mock_df['Vehicle Make'] != "99 - UNKNOWN"]
+mock_df = mock_df[mock_df['Rating'] != "99 - UNKNOWN"]
+print(mock_df.shape)
+
+# Clean Person Type Column
+mock_df = mock_df[(mock_df['Person Type'] != "2 - PASSENGER/OCCUPANT") & (mock_df['Person Type'] != "4 - PEDESTRIAN") & (mock_df['Person Type'] != "98 - OTHER (EXPLAIN IN NARRATIVE)") & (mock_df['Person Type'] != "6 - PASSENGER/OCCUPANT ON MOTORCYCLE TYPE VEHICLE")]
+print(mock_df.shape)
+
+# Clean Vehicle Body Style column
+mock_df = mock_df[(mock_df['Vehicle Body Style'] != "No Data") & (mock_df['Vehicle Body Style'] != "98 - OTHER  (EXPLAIN IN NARRATIVE)") & (mock_df['Vehicle Body Style'] != "EV - NEV-NEIGHBORHOOD ELECTRIC VEHICLE") & (mock_df['Vehicle Body Style'] != "FE - FARM EQUIPMENT")]
+print(mock_df.shape)
+
+# Clean Vehicle Body Style column
+mock_df.loc[(mock_df['Vehicle Body Style'] == "P4 - PASSENGER CAR, 4-DOOR") , 'Vehicle Body Style'] = "SEDAN(4-DOOR)"
+mock_df.loc[(mock_df['Vehicle Body Style'] == "SV - SPORT UTILITY VEHICLE"), 'Vehicle Body Style'] = "SUV"
+mock_df.loc[(mock_df['Vehicle Body Style'] == "PK - PICKUP"), 'Vehicle Body Style'] = "PICKUP TRUCK"
+mock_df.loc[(mock_df['Vehicle Body Style'] == "P2 - PASSENGER CAR, 2-DOOR"), 'Vehicle Body Style'] = "SEDAN(2-DOOR)"
+mock_df.loc[(mock_df['Vehicle Body Style'] == "VN - VAN"), "Vehicle Body Style"] = "VAN"
+mock_df.loc[(mock_df['Vehicle Body Style'] == "TR - TRUCK"), "Vehicle Body Style"] = "TRUCK(OTHER)"
+mock_df.loc[(mock_df['Vehicle Body Style'] == "MC - MOTORCYCLE"), "Vehicle Body Style"] = "MOTORCYCLE"
+mock_df.loc[(mock_df['Vehicle Body Style'] == "TT - TRUCK TRACTOR") | (mock_df['Vehicle Body Style'] == "PC - POLICE CAR/TRUCK") | (mock_df['Vehicle Body Style'] == "BU - BUS") | (mock_df['Vehicle Body Style'] == "AM - AMBULANCE") | (mock_df['Vehicle Body Style'] == "FT - FIRE TRUCK") | (mock_df['Vehicle Body Style'] == "SB - YELLOW SCHOOL BUS") | (mock_df['Vehicle Body Style'] == "PM - POLICE MOTORCYCLE"), "Vehicle Body Style"] = "OTHER"
+
+mock_df['Vehicle Body Style'].value_counts()
+
+# Clean Weather Data Column
+mock_df['Weather Condition'].value_counts()
+
+# Group Weather Condition into three categories, Clear, Cloudy, and Other.
+mock_df.loc[(mock_df['Weather Condition'] == "1 - CLEAR") , 'Weather Condition'] = "CLEAR"
+mock_df.loc[(mock_df['Weather Condition'] == "2 - CLOUDY"), 'Weather Condition'] = "CLOUDY"
+mock_df.loc[(mock_df['Weather Condition'] == "3 - RAIN") | (mock_df['Weather Condition'] == "6 - FOG") | (mock_df['Weather Condition'] == "4 - SLEET/HAIL") | (mock_df['Weather Condition'] == "98 - OTHER (EXPLAIN IN NARRATIVE)") | (mock_df['Weather Condition'] == "5 - SNOW") | (mock_df['Weather Condition'] == "7 - BLOWING SAND/SNOW") | (mock_df['Weather Condition'] == "8 - SEVERE CROSSWINDS"), "Weather Condition"] = "OTHER"
+mock_df['Weather Condition'].value_counts()
+
+# Clean Person Gender column
+mock_df['Person Gender'].value_counts()
+
+# Group Gender into two classes: 0 for Female and 1 for Male
+mock_df.loc[mock_df['Person Gender'] == "2 - FEMALE", 'Person Gender'] = "FEMALE"
+mock_df.loc[mock_df['Person Gender'] == "1 - MALE", 'Person Gender'] = "MALE"
+
+# Clean Person Type column
+mock_df['Person Type'].value_counts()
+
+# Clean values for Person Type
+mock_df.loc[mock_df['Person Type'] == "1 - DRIVER", 'Person Type'] = "DRIVER"
+mock_df.loc[mock_df['Person Type'] == "5 - DRIVER OF MOTORCYCLE TYPE VEHICLE", 'Person Type'] = "MOTORCYCLE DRIVER"
+
+# Clean Crash Severity column
+mock_df['Crash Severity'].value_counts()
+
+# Create a function that groups crash severity into two groups, 1 for No injury, 2 for all other injuries.
+def group_crash(X):
+    if X == "N - NOT INJURED":
+        return 0
+    else:
+        return 1
+
+# Group Crash Severity into two classes in order for the ML to predict the level of severity.
+mock_df['Crash Severity'] = mock_df['Crash Severity'].apply(group_crash)
+
+mock_df['Crash Severity'].value_counts()
+
+mock_df.dtypes
