@@ -122,3 +122,55 @@ mock_df['Crash Severity'] = mock_df['Crash Severity'].apply(group_crash)
 mock_df['Crash Severity'].value_counts()
 
 mock_df.dtypes
+
+# Clean Person Age
+mock_df['Person Age'].value_counts()
+
+mock_df = mock_df[mock_df['Person Age'] != "No Data"]
+
+mock_df["Person Age"] = mock_df["Person Age"].astype(int)
+
+# Clean Vehicle Make Column
+mock_df['Vehicle Make'].value_counts()
+
+# Map over the Vehicle Make column and replace the values with "OTHER" where the value count is less than 9000.
+mock_df[['Vehicle Make']] = mock_df[['Vehicle Make']].where(mock_df.apply(lambda x: x.map(x.value_counts()))>=900, "OTHER")
+
+mock_df['Vehicle Make'].value_counts()
+
+# Clean Ratings
+mock_df['Rating'].value_counts()
+
+mock_df = mock_df[mock_df['Rating'] != "Not Rated"]
+mock_df = mock_df[mock_df['Rating'] != "Vehicle Not Found."]
+mock_df.shape
+
+mock_df['Rating'].value_counts()
+
+mock_df.head()
+
+# Check for Null values
+mock_df.isna().sum()
+
+#Drop Null values
+mock_df = mock_df.dropna()
+mock_df.head()
+
+# Clean Light Condition Column
+print(mock_df['Light Condition'].value_counts())
+
+# Create a cleaning function to bin the light condition column into Daylight and Other
+def clean_light(cond):
+    if cond == "1 - DAYLIGHT":
+        return "DAYLIGHT"
+    else:
+        return "OTHER"
+
+# Apply the function to the Light Condition column
+mock_df['Light Condition'] = mock_df['Light Condition'].apply(clean_light)
+mock_df.head()
+
+mock_df.dtypes
+
+mock_df["Rating"] = mock_df["Rating"].astype(int)
+mock_df['Crash Severity'] = mock_df['Crash Severity'].astype(int)
