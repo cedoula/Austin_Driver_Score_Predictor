@@ -174,3 +174,46 @@ mock_df.dtypes
 
 mock_df["Rating"] = mock_df["Rating"].astype(int)
 mock_df['Crash Severity'] = mock_df['Crash Severity'].astype(int)
+
+"""# Prepare Data for ML Model"""
+
+# Drop Person Type 
+mock_df = mock_df.drop("Person Type", axis=1)
+mock_df.head()
+
+# Generate the categorical variable list
+feat_cat = ['Person Gender','Light Condition', 'Weather Condition', 'Vehicle Body Style', 'Vehicle Make', 'Day of Week']
+
+# Create a OneHotEncoder instance
+enc = OneHotEncoder(sparse=False)
+
+# Fit and transform the OneHotEncoder using the categorical variable list
+encode_df = pd.DataFrame(enc.fit_transform(mock_df[feat_cat]))
+
+# Add the encoded variable names to the dataframe
+encode_df.columns = enc.get_feature_names(feat_cat)
+encode_df.head()
+
+# Merge one-hot encoded features and drop the originals
+mock_df2 = mock_df.merge(encode_df, left_index=True, right_index=True).drop(columns=feat_cat, axis=1)
+mock_df2.head()
+
+mock_df2.corr()
+
+# Split our preprocessed data into our features and target arrays
+y = mock_df2["Crash Severity"]
+X = mock_df2.drop("Crash Severity", axis=1)
+
+# Split the preprocessed data into a training and testing dataset
+# The training and testing data is split into 75% and 25%, respectively.
+X_train, X_test, y_train, y_test = train_test_split(X, y, random_state=0, stratify=y)
+
+# Create a StandardScaler instances
+scaler = StandardScaler()
+
+# Fit the StandardScaler
+X_scaler = scaler.fit(X_train)
+
+# Scale the data
+X_train_scaled = X_scaler.transform(X_train)
+X_test_scaled = X_scaler.transform(X_test)
