@@ -273,3 +273,18 @@ display(cm_df)
 print(f"Accuracy Score : {acc_score}")
 print("Classification Report")
 print(classification_report(y_test, predictions))
+
+"""# Logistic Regression"""
+# We also wanted to look at how the model performed for a Logistic Regression model because it also predicts binary values.
+
+from sklearn.linear_model import LogisticRegression
+classifier = LogisticRegression(solver='lbfgs',
+   max_iter=200,
+   random_state=1)
+
+classifier.fit(X_resampled2, y_resampled2)
+
+y_pred = classifier.predict(X_test_scaled)
+
+from sklearn.metrics import accuracy_score
+print(accuracy_score(y_test, y_pred))
