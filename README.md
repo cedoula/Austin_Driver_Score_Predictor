@@ -15,3 +15,21 @@ TxDot Crash Query System -- This database uses a multitude of factors to input d
 - How different cars perform in terms of frequency and severity of car accidents?
 - How different weather types affect the frequency of car accidents?
 - How demographics affect frequency of car accidents?
+
+## Communication Protocols
+- In order to keep updated on the status of each of our parts of the project, we message each other regularly in slack. Additionally, we meet after TA sessions a minimum of once a week. 
+
+## Deliverable 2 - Machine Learning Model
+- The preliminary data includes columns that describe the environment for each crash that took place in Austin, Tx. These features include the weather condition, crash severity, day of the week, vehicle make and model, etc.
+- After connecting to the database, we printed out the header for each column to see all of the features available. From that list, we chose the features that we believed would have the highest correlation with crash severity.
+- The data was split into training and test data using the train_test_split function. We used the default 75% to 25% split.
+- We decided to use the decision tree model for our machine learning model. We grouped our crash severity data into two categories, 0 - no injury, and 1 - injury. The benefit of this model is that it can be used to predict our binary outcome. The downside of this model is that if we choose to group our crash severity data differently (the data is grouped into 5 classifications: no injury, possible injury, non-incapacitating injury, severe injury, and fatal injury), we will not be able to use the decision tree model.
+
+## Deliverable 2 - Presentation
+- Our presentation outline can be found here [Google Slide Presentation](https://docs.google.com/presentation/d/1dQ-wwnd6MWJ3GsWzo_puQQ2VfBtjN7rRvCD3rpHtnxI/edit)
+
+## Deliverable 2 - Dashboard
+- We will be using tableau as a part of our dashboard. Our preliminary dashboard can be found here [Tableau Dashboard](https://public.tableau.com/profile/cedric.vanza#!/vizhome/Austin2018-2020CrashAnalysis/Dashboard1?publish=yes)
+- The other part of our dashboard will be a webpage with an introduction and description of the project. It will include an interactive element, users will be able to select data that pertains to them (age, type of car, etc.) and click a button that will give the a risk score.
+
+
