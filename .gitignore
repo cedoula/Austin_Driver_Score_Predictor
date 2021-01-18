@@ -1,5 +1,6 @@
 # Adding database password to git ignore file
 pswd.py
+rds.py
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
