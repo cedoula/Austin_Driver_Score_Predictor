@@ -217,3 +217,25 @@ X_scaler = scaler.fit(X_train)
 # Scale the data
 X_train_scaled = X_scaler.transform(X_train)
 X_test_scaled = X_scaler.transform(X_test)
+
+"""# Undersampling"""
+# We are using undersampling to normalize our data.
+
+from imblearn.under_sampling import RandomUnderSampler
+ros = RandomUnderSampler(random_state=1)
+X_resampled2, y_resampled2 = ros.fit_resample(X_train_scaled, y_train)
+Counter(y_resampled)
+
+from sklearn.linear_model import LogisticRegression
+model = LogisticRegression(solver='lbfgs', random_state=1)
+model.fit(X_resampled2, y_resampled2)
+
+from sklearn.metrics import confusion_matrix
+y_pred = model.predict(X_test_scaled)
+confusion_matrix(y_test, y_pred)
+
+from sklearn.metrics import balanced_accuracy_score
+balanced_accuracy_score(y_test, y_pred)
+
+from imblearn.metrics import classification_report_imbalanced
+print(classification_report_imbalanced(y_test, y_pred))
