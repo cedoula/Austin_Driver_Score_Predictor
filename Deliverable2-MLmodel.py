@@ -239,3 +239,37 @@ balanced_accuracy_score(y_test, y_pred)
 
 from imblearn.metrics import classification_report_imbalanced
 print(classification_report_imbalanced(y_test, y_pred))
+
+"""# Decision Tree
+## We have decided to use a decision tree model for our Machine Learning Model because we are predicting a binary outcome.
+"""
+
+# Import Dependencies
+from sklearn import tree
+from sklearn.metrics import confusion_matrix, accuracy_score, classification_report
+# Creating the decision tree classifier instance.
+model = tree.DecisionTreeClassifier()
+# Fitting the model.
+model = model.fit(X_train_scaled, y_train)
+
+# Making predictions using the testing data.
+predictions = model.predict(X_test_scaled)
+
+# Calculating the confusion matrix
+cm = confusion_matrix(y_test, predictions)
+
+# Create a DataFrame from the confusion matrix.
+cm_df = pd.DataFrame(
+    cm, index=["Actual 0", "Actual 1"], columns=["Predicted 0", "Predicted 1"])
+
+cm_df
+
+# Calculating the accuracy score.
+acc_score = accuracy_score(y_test, predictions)
+
+# Displaying results
+print("Confusion Matrix")
+display(cm_df)
+print(f"Accuracy Score : {acc_score}")
+print("Classification Report")
+print(classification_report(y_test, predictions))
