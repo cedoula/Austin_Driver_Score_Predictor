@@ -1,6 +1,6 @@
 ## Selected Topic
 ### Analyzing motor vehicle accident data in Austin.
-- Using a variety of tools we will look at how different factors may contribute to the severity of a car crash.
+- Using a variety of tools, we will look at how different factors may contribute to the severity of a car crash.
 
 ## Reason for Selecting Topic
 - We want to build a model that will predict the severity of crash depending on different factors. 
@@ -11,11 +11,11 @@ TxDot Crash Query System -- This database uses a multitude of factors to input d
 - Weather, longitutde, latitutde, severity, time and date of accident over the course of many years. 
 - For the sake of our analysis, we will only use data from 2018-2020.
 Additionally, we used NHTSA WebAPIs - https://one.nhtsa.gov/webapi/Default.aspx?SafetyRatings/API/5
-This webAPI gives access to the to the New Car Assessment Program - 5 Star Safety Rating of the US Department Of Transportation to get retrieve to Overall safety rating of the cars involved in the crashes.
+- This webAPI gives access to the New Car Assessment Program - 5 Star Safety Rating of the US Department Of Transportation, to retrieve overall safety ratings of the cars involved in the crashes.
 
 ## Questions we hope to answer with the data
-- How different cars perform in terms of frequency and severity of car accidents?
-- How different weather types affect the frequency of car accidents?
+- How do different cars perform in terms of frequency and severity of car accidents?
+- How do different weather types affect the frequency of car accidents?
 - How demographics affect frequency of car accidents?
 - Where do most accidents occur in Austin?
 
@@ -39,11 +39,12 @@ This webAPI gives access to the to the New Car Assessment Program - 5 Star Safet
     - Flask
     - CSS
 
-## Deliverable 2 - Machine Learning Model
+## Deliverable 3 - Machine Learning Model
 - The preliminary data includes columns that describe the environment for each crash that took place in Austin, TX. These features include the weather condition, crash severity, day of the week, vehicle make and model, etc.
 - An ERD showcasing the inter-relationships between each of the features from the different datasets can be found [here](https://github.com/cedoula/Final_Project/blob/Deliverable2/QuickDBD-car_crash.png?raw=true). 
 - After connecting to the database, we printed out the header for each column to see all of the features available. From that list, we chose the features that we believed would have the highest correlation with crash severity.
 - The data was split into training and test data using the train_test_split function. We used the default 75% to 25% split.
+- After careful analyzing, it was determined that the linear models only yielded about 50% correlation. Altering the parameters, such as increasing max iterations and n_jobs,  to these did not increase the accuracy. Neural network model was then used to see if it would have a higher accuracy rate. After adding 8 layers (using Relu, Swish and Sigmoid), the accuracy rate was still at 54%, with 69% loss. This means our model could only accurately predict the outcome of the severity of a crash about 50% of the time. 
 - We decided to use the decision tree model for our machine learning model. We grouped our crash severity data into two categories, 0 - no injury, and 1 - injury. The benefit of this model is that it can be used to predict our binary outcome. The downside of this model is that if we choose to group our crash severity data differently (the data is grouped into 5 classifications: no injury, possible injury, non-incapacitating injury, severe injury, and fatal injury), we will not be able to use the decision tree model.
 
 ## Deliverable 3 - Presentation
