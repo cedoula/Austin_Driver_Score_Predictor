@@ -1,3 +1,7 @@
+# Add .DS_Store
+.DS_Store
+*.DS_Store
+
 # Adding database password to git ignore file
 pswd.py
 rds.py
