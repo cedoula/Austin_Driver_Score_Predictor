@@ -15,7 +15,7 @@ from rds import db_password
 from psycopg2 import sql, connect
 from matplotlib import pyplot
 import matplotlib.pylab as plt
-get_ipython().run_line_magic('matplotlib', 'inline')
+#get_ipython().run_line_magic('matplotlib', 'inline')
 from matplotlib.pylab import rcParams
 rcParams['figure.figsize'] = 12, 4
 
