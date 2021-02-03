@@ -1,3 +1,6 @@
+# Austin Driver Score
+<br>
+
 ## Selected Topic
 ### Analyzing motor vehicle accident data in Austin.
 - Using a variety of tools, we will look at how different factors may contribute to the severity of a car crash.
@@ -20,14 +23,14 @@ Additionally, we used NHTSA WebAPIs - https://one.nhtsa.gov/webapi/Default.aspx?
 - Where do most accidents occur in Austin?
 
 ## Communication Protocols
-- In order to keep updated on the status of each of our parts of the project, we message each other regularly through Slack. Any other questions or concerns that arise outside of our daily check-ins, we tackle during (or after) class, our group Zoom meetings, or even during weekly TA sessions.
+- In order to keep updated on the status of each of our parts of the project, we message each other regularly through Slack and organized regular zoom meetings.
 
 ## Tools
 - Creating Database
     - PostgreSQL
     - Amazon Web Services (AWS)
 - Connecting to Database
-    - SQLAlchemy, Psycopg2
+    - Psycopg2
 - Analyzing Data
     - Pandas
 - Machine Learning
@@ -35,9 +38,11 @@ Additionally, we used NHTSA WebAPIs - https://one.nhtsa.gov/webapi/Default.aspx?
     - Scikit-Learn
     - Tensorflow
 - Dashboard
+    - Taleau
     - Javascript
     - Flask
     - CSS
+    - Heroku
 
 ## Machine Learning Model
 - The preliminary data includes columns that describe the environment for each crash that took place in Austin, TX. These features include the weather condition, crash severity, day of the week, vehicle make and model, etc.
@@ -51,10 +56,10 @@ Additionally, we used NHTSA WebAPIs - https://one.nhtsa.gov/webapi/Default.aspx?
 - Our presentation can be found here [Google Slide Presentation](https://docs.google.com/presentation/d/1dQ-wwnd6MWJ3GsWzo_puQQ2VfBtjN7rRvCD3rpHtnxI/edit)
 
 ## Dashboard
-- We used Tableau as a part of our dashboard. Our Tableau analysis can be found here [Tableau Dashboard](https://public.tableau.com/profile/cedric.vanza#!/vizhome/Austin2018-2020CrashAnalysis/Dashboard1?publish=yes)
+- We used Tableau as a part of our dashboard. Our Tableau analysis can be found here [Tableau Dashboard](https://public.tableau.com/profile/cedric.vanza#!/vizhome/Austin2018-2020CrashAnalysis/Dashboard1?publish=yes).
 - The other part of our dashboard is an interactive webpage using machine learning to calculate a driver score. It includes an interactive element, users are able to select data that pertains to them (age, type of car, etc.) and click a button that will give the a risk score.\
 The link to the dashboard repository is [Link Repo Dashboard](https://github.com/cedoula/Austin_Driver_Score).
-- The blueprints of our dashboard can be found [here](https://docs.google.com/document/d/1_BNqri7IxI95_6hnyu4C56DFVbYSCSsw11DYcGi8-_k/edit)
+- The link to the deployed dashboard is [https://austin-driver-score.herokuapp.com/](https://cedric-lutonda-driver-score.herokuapp.com/).
 
 - Dashboard Live Demo
 
