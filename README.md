@@ -38,7 +38,7 @@ Additionally, we used NHTSA WebAPIs - https://one.nhtsa.gov/webapi/Default.aspx?
     - Scikit-Learn
     - Tensorflow
 - Dashboard
-    - Taleau
+    - Tableau
     - Javascript
     - Flask
     - CSS
