@@ -56,7 +56,7 @@ Additionally, we used NHTSA WebAPIs - https://one.nhtsa.gov/webapi/Default.aspx?
 - Our presentation can be found here [Google Slide Presentation](https://docs.google.com/presentation/d/1dQ-wwnd6MWJ3GsWzo_puQQ2VfBtjN7rRvCD3rpHtnxI/edit)
 
 ## Dashboard
-- We used Tableau as a part of our dashboard. Our Tableau analysis can be found here [Tableau Dashboard](https://public.tableau.com/profile/cedric.vanza#!/vizhome/Austin2018-2020CrashAnalysis/Dashboard1?publish=yes).
+- We used Tableau as a part of our dashboard. Our Tableau analysis can be found here [Tableau Dashboard](https://public.tableau.com/profile/cedric.vanza#!/vizhome/Austin2018-2020CrashAnalysis/AustinCarAccidentsDashboard).
 - The other part of our dashboard is an interactive webpage using machine learning to calculate a driver score. It includes an interactive element, users are able to select data that pertains to them (age, type of car, etc.) and click a button that will give the a risk score.\
 The link to the dashboard repository is [Link Dashboard Repo](https://github.com/cedoula/Austin_Driver_Score).
 - The link to the deployed dashboard is [https://austin-driver-score.herokuapp.com/](https://cedric-lutonda-driver-score.herokuapp.com/).
