@@ -1,4 +1,4 @@
-# Austin Driver Score
+# Austin Driver Score Predictor
 <br>
 
 ## Selected Topic
@@ -41,6 +41,7 @@ Additionally, we used NHTSA WebAPIs - https://one.nhtsa.gov/webapi/Default.aspx?
     - Tableau
     - Javascript
     - Flask
+    - HTML
     - CSS
     - Heroku
 
